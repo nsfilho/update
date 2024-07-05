@@ -188,8 +188,9 @@ pub struct ServiceEndpointSpecPortConfig {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ServiceEndpointSpec {
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "Mode")]
-    pub mode: String,
+    pub mode: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "Ports")]
     pub ports: Option<Vec<ServiceEndpointSpecPortConfig>>,
@@ -267,4 +268,20 @@ pub struct Service {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "UpdateStatus")]
     pub update_status: Option<ServiceUpdateStatus>,
+    #[serde(skip)]
+    pub(super) service_http_url: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ServiceResume {
+    pub id: String,
+    pub version: u64,
+    #[serde(rename = "createdAt")]
+    pub created_at: DateTime<Utc>,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: DateTime<Utc>,
+    pub name: String,
+    pub image: String,
+    #[serde(rename = "fromTag")]
+    pub tag: String,
 }

@@ -1,6 +1,10 @@
 [package]
 name = "updater"
 version = "0.1.0"
+authors = ["Nelio Santos <nsfilho@icloud.com>"]
+description = "A simple updater for a service in docker swarm"
+license = "MIT"
+repository = "https://github.com/nsfilho/update"
 edition = "2021"
 
 [dependencies]
@@ -17,3 +21,6 @@ figment = { version = "0.10.19", features = ["env", "json", "toml", "yaml"] }
 anyhow = "1.0.86"
 reqwest = { version = "0.12.4", features = ["json"] }
 serde_path_to_error = "0.1.16"
+tower-http = { version = "0.5.2", features = ["timeout", "trace", "cors", "limit"] }
+thiserror = "1.0.61"
+futures = "0.3.30"
